@@ -26,7 +26,6 @@
 
 <!-- Menu final -->
 <!-- Canasta de compras -->
-
 @if (estado.Canasta.Pedidos.Any())
 {
     <h2 class="">Pedido actual</h2>
@@ -97,7 +96,6 @@
     </fieldset>
 </EditForm>
 <!-- Final de la entrada de cliente -->
-
 @code {
 
     private Estado estado { get; set; } = new Estado();
@@ -115,6 +113,9 @@
 
     private void RealizarPedido()
     {
-        Console.WriteLine("Pedido Realizado");
+        if (!string.IsNullOrEmpty(estado.Canasta.Cliente.Calle)
+            && !string.IsNullOrEmpty(estado.Canasta.Cliente.Nombre)
+            && !string.IsNullOrEmpty(estado.Canasta.Cliente.Ciudad))
+                Console.WriteLine("Pedido Realizado");
     }
 }
