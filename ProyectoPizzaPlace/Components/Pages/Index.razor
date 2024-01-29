@@ -1,6 +1,7 @@
 ﻿@page "/PizzaPlace";
 @rendermode InteractiveServer
 
+<PageTitle>Pizza Place</PageTitle>
 <h1>Men&uacute; de Pizzas</h1>
 
 @foreach (var pizza in estado.Menu.Pizzas)
@@ -68,7 +69,7 @@
 <!-- Canasta de compras Final -->
 <!--Entrada de cliente -->
 
-<h2>Ingresa Datos Personales</h2>
+<h2>Ingresar Datos Personales</h2>
 
 <EditForm Model="@estado.Canasta.Cliente" OnValidSubmit="RealizarPedido">
     <DataAnnotationsValidator />
