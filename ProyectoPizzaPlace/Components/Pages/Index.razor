@@ -1,0 +1,36 @@
+﻿@page "/PizzaPlace";
+@rendermode InteractiveServer
+
+<h1>Menu de Pizzas</h1>
+
+@foreach (var pizza in estado.Menu.Pizzas)
+{
+    <div class="row">
+        <div class="col">
+            @pizza.Nombre
+        </div>
+        <div class="col text-right">@($"${pizza.Precio:0.00}")</div>
+        <div class="col">
+            <img src="@PicanteImagenes(pizza.Picante)" alt="@pizza.Picante" />
+        </div>
+        <div class="col">
+            <button class="btn btn-success pl-4 pr-4"
+                    @onclick="@(() => AgregarCanasta(pizza))">
+                Añadir
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    private Estado estado { get; set; } = new Estado();
+
+    protected override void OnInitialized()
+    {
+        estado.Menu.Add(new Pizza(1, "Pepperoni", 8.99M, Picante.Caliente));
+        estado.Menu.Add(new Pizza(2, "Margarita", 7.99M, Picante.Nada));
+        estado.Menu.Add(new Pizza(3, "Diabolo", 9.99M, Picante.Picante));
+    }
+    private string PicanteImagenes(Picante picante) => $"{picante.ToString().ToLower()}.png";
+    private void AgregarCanasta(Pizza pizza) => estado.Canasta.Add(pizza.Id);
+}
